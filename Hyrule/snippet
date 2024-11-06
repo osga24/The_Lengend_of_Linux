@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ "${1}" = "build" ]
+then
+	docker build -t hyrelu .
+	docker run --name hyrelu -it hyrelu
+elif [ "${1}" = "install" ]
+then
+	sudo apt install git
+	sudo apt install docker.io
+elif [ "${1}" = "remove" ]
+then
+	docker stop hyrelu
+	docker rm hyrelu
+	docker rmi hyrelu
+elif [ "${1}" = "start" ]
+then
+	docker start hyrelu
+	docker exec -it hyrelu /bin/bash
+else
+	echo "1. ./snippet install"
+	echo "2. ./snippet build"
+	echo "3. ./snippet remove"
+	echo "4. ./snippet start"
+
+
+fi
